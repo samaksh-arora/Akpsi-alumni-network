@@ -57,3 +57,20 @@
   border-radius: 6px;
   color: #b30000;
 }
+
+/* Add to existing login.css */
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+  }
+
+  .login-container h1 {
+    font-size: 1.75rem;
+  }
+
+  .login-form input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}

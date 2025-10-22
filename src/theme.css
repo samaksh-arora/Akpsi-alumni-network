@@ -197,3 +197,38 @@ body {
     padding: 1.5rem 1rem;
   }
 }
+
+/* Add to existing theme.css at the end */
+
+/* Touch-Friendly Elements */
+@media (max-width: 768px) {
+  /* Minimum 44px touch targets (Apple HIG recommendation) */
+  .btn {
+    min-height: 44px;
+    padding: 0.9rem 1.2rem;
+    font-size: 1rem;
+  }
+
+  /* Bigger form inputs */
+  input,
+  select {
+    min-height: 44px;
+    font-size: 16px; /* Prevents iOS zoom */
+  }
+
+  /* Bigger clickable links */
+  a {
+    padding: 0.5rem 0;
+  }
+
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Better spacing between sections */
+  .section,
+  .search-section {
+    margin-bottom: 1.5rem;
+  }
+}

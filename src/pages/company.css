@@ -33,3 +33,32 @@
   font-size: 0.85rem;
 }
 
+/* Add to existing company.css */
+
+@media (max-width: 768px) {
+  .company-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .company-card {
+    padding: 1.25rem;
+    /* Make cards easier to tap */
+    min-height: 80px;
+  }
+
+  .company-card h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* Modal overlay for mobile */
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 1rem !important;
+  }
+
+  .modal-content {
+    max-height: 85vh !important;
+    padding: 1.5rem !important;
+  }
+}
