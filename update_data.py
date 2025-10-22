@@ -58,67 +58,38 @@ def clean_company_name(company_str):
     if pd.isna(company_str):
         return None
     
-    # Convert to string and strip whitespace
     company_str = str(company_str).strip()
-    
-    # Remove extra spaces between words
     company_str = re.sub(r'\s+', ' ', company_str)
-    
-    # Remove trailing periods, commas
     company_str = re.sub(r'[.,\s]+$', '', company_str)
     
-    # Standardize common variations
     company_str = company_str.replace('Inc.', 'Inc')
     company_str = company_str.replace('LLC.', 'LLC')
     company_str = company_str.replace('Corp.', 'Corp')
     company_str = company_str.replace('Ltd.', 'Ltd')
     
-    # Company name mapping - Add your specific company variations here
     company_mapping = {
-        # Ally variations
         'Ally': 'Ally Financial',
         'Ally Bank': 'Ally Financial',
-        
-        # GM variations
         'GM': 'General Motors',
         'General Motors Company': 'General Motors',
-        
-        # Ford variations
         'Ford': 'Ford Motor Company',
         'Ford Motor': 'Ford Motor Company',
-        
-        # BCBS variations
         'BCBS': 'Blue Cross Blue Shield',
         'Blue Cross': 'Blue Cross Blue Shield',
         'BlueCross BlueShield': 'Blue Cross Blue Shield',
-        
-        # Accenture variations
         'Accenture PLC': 'Accenture',
-        
-        # Deloitte variations
         'Deloitte Consulting': 'Deloitte',
         'Deloitte & Touche': 'Deloitte',
-        
-        # PwC variations
         'PwC': 'PricewaterhouseCoopers',
         'PWC': 'PricewaterhouseCoopers',
         'PricewaterhouseCoopers LLP': 'PricewaterhouseCoopers',
-        
-        # EY variations
         'EY': 'Ernst & Young',
         'Ernst and Young': 'Ernst & Young',
-        
-        # KPMG variations
         'KPMG LLP': 'KPMG',
-        
-        # Rocket variations
         'Rocket Mortgage': 'Rocket Companies',
         'Rocket Companies Inc': 'Rocket Companies',
-        
-        # Add more as you discover duplicates
     }
     
-    # Apply mapping if exists
     if company_str in company_mapping:
         return company_mapping[company_str]
     
@@ -127,40 +98,42 @@ def clean_company_name(company_str):
 print("Reading alumni_lookup.csv...")
 alumni_df = pd.read_csv('alumni_lookup.csv', skiprows=1)
 
-# Clean column names
 alumni_df.columns = ['name', 'pledge_class', 'graduation_year', 'email', 
                     'phone', 'major', 'current_employer', 'current_role',
                     'past_employers', 'current_location', 'linkedin',
                     'secondary_education', 'interested_in_akpsi', 'industry']
 
-# Apply cleaning functions
 alumni_df['graduation_year'] = alumni_df['graduation_year'].apply(clean_graduation_year)
 alumni_df['pledge_class'] = alumni_df['pledge_class'].apply(clean_pledge_class)
 alumni_df['current_employer'] = alumni_df['current_employer'].apply(clean_company_name)
 alumni_df['industry'] = alumni_df['industry'].str.strip() if 'industry' in alumni_df.columns else None
 
-# Remove empty rows
 alumni_df = alumni_df.dropna(subset=['name'])
 
-# Convert NaN to None
 for col in alumni_df.columns:
     alumni_df[col] = alumni_df[col].where(pd.notna(alumni_df[col]), None)
 
 print(f"Processed {len(alumni_df)} alumni records")
-
-# Show company standardization results
 print("\nCompany name standardization:")
 company_counts = alumni_df['current_employer'].value_counts()
 print(f"Total unique companies: {len(company_counts)}")
 
-# Create alumni records
+# Create alumni records - FIXED SECTION
 alumni_records = []
 for idx, row in alumni_df.iterrows():
+    # Safely handle graduation year conversion
+    grad_year = None
+    if pd.notna(row['graduation_year']) and row['graduation_year']:
+        try:
+            grad_year = int(row['graduation_year'])
+        except (ValueError, TypeError):
+            grad_year = None
+    
     record = {
         "id": idx + 1,
         "name": row['name'],
         "pledgeClass": row['pledge_class'],
-        "graduationYear": int(row['graduation_year']) if row['graduation_year'] else None,
+        "graduationYear": grad_year,
         "email": row['email'],
         "phone": row['phone'],
         "major": row['major'],
@@ -175,17 +148,26 @@ for idx, row in alumni_df.iterrows():
     }
     alumni_records.append(record)
 
-# Generate statistics
+# Generate statistics - ALSO FIXED
+grad_years_dict = {}
+for year in alumni_df['graduation_year'].dropna().unique():
+    try:
+        if pd.notna(year):
+            year_int = int(year)
+            count = len(alumni_df[alumni_df['graduation_year'] == year])
+            grad_years_dict[year_int] = count
+    except (ValueError, TypeError):
+        pass
+
 stats = {
     "totalAlumni": len(alumni_df),
     "pledgeClasses": alumni_df['pledge_class'].value_counts().to_dict(),
     "industries": alumni_df['industry'].value_counts().to_dict(),
-    "graduationYears": {int(k): v for k, v in alumni_df['graduation_year'].value_counts().to_dict().items() if k},
+    "graduationYears": grad_years_dict,
     "topEmployers": alumni_df['current_employer'].value_counts().head(15).to_dict(),
     "locations": alumni_df['current_location'].value_counts().head(15).to_dict()
 }
 
-# Create company directory - NOW WITH DEDUPLICATION
 company_directory = {}
 for employer in alumni_df['current_employer'].dropna().unique():
     if employer and str(employer).strip() and employer != 'Unknown':
@@ -198,17 +180,15 @@ for employer in alumni_df['current_employer'].dropna().unique():
             "industries": company_alumni['industry'].dropna().unique().tolist()
         }
 
-# Sort companies by alumni count
 company_directory = dict(sorted(company_directory.items(), 
                                 key=lambda x: x[1]['alumniCount'], 
                                 reverse=True))
 
-# Create master data
 master_data = {
     "metadata": {
         "chapterName": "Alpha Kappa Psi - Beta Omicron Chapter",
         "university": "Wayne State University",
-        "lastUpdated": "Winter 2024",
+        "lastUpdated": "Fall 2025",
         "totalRecords": len(alumni_records)
     },
     "alumni": alumni_records,
@@ -217,12 +197,11 @@ master_data = {
     "filters": {
         "pledgeClasses": sorted([pc for pc in alumni_df['pledge_class'].unique() if pc]),
         "industries": sorted([ind for ind in alumni_df['industry'].dropna().unique() if ind]),
-        "graduationYears": sorted([int(y) for y in alumni_df['graduation_year'].dropna().unique()]),
+        "graduationYears": sorted([int(y) for y in alumni_df['graduation_year'].dropna().unique() if pd.notna(y)]),
         "employers": sorted([emp for emp in alumni_df['current_employer'].dropna().unique() if emp and emp != 'Unknown'])
     }
 }
 
-# Save to JSON
 with open('public/akpsi_network_data.json', 'w', encoding='utf-8') as f:
     json.dump(master_data, f, indent=2, ensure_ascii=False)
 
