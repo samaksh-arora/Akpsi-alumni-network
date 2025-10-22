@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react'
+import './company.css'
+import '../theme.css'
+import '../styles.css'
 
 export default function CompanyDirectory() {
   const [data, setData] = useState(null)

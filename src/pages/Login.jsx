@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import './login.css'
+import '../theme.css'
+import '../styles.css'
 
 export default function Login({ onLogin = () => {} }) {
   const [password, setPassword] = useState('')

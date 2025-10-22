@@ -1,0 +1,35 @@
+.company-card {
+  background: white;
+  border: 2px solid var(--akpsi-blue);
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  transition: all 0.25s;
+  cursor: pointer;
+}
+.company-card:hover {
+  background: var(--akpsi-gold);
+  border-color: var(--akpsi-gold);
+  transform: translateY(-3px);
+}
+.company-card h3 {
+  color: var(--akpsi-blue);
+  margin-bottom: 0.5rem;
+}
+.company-meta {
+  color: var(--akpsi-dark);
+}
+.industry-tags {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.industry-tag {
+  background: var(--akpsi-blue);
+  color: white;
+  border-radius: 20px;
+  padding: 0.2rem 0.8rem;
+  font-size: 0.85rem;
+}
+

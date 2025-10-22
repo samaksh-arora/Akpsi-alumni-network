@@ -1,0 +1,30 @@
+.page-header h1 {
+  font-family: var(--font-heading);
+  color: var(--akpsi-blue);
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.stat-card {
+  background: var(--akpsi-gold);
+  border-radius: 12px;
+  color: var(--akpsi-dark);
+  padding: 2rem 1rem;
+  text-align: center;
+  font-weight: 600;
+  transition: transform 0.25s;
+}
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+.stat-number {
+  font-size: 2.2rem;
+  color: var(--akpsi-blue);
+}
+.quick-links h3 {
+  color: var(--akpsi-blue);
+}
+

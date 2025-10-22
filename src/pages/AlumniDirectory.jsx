@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
 import AlumniCard from '../components/AlumniCard'
+import './alumni.css'
+import '../theme.css'
+import '../styles.css'
 
 export default function AlumniDirectory() {
   const [data, setData] = useState(null)

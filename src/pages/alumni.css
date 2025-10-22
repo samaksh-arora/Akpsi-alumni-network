@@ -1,0 +1,40 @@
+.filters select,
+.filters input {
+  border: 2px solid var(--akpsi-gray);
+  border-radius: 8px;
+  padding: 0.7rem;
+}
+.filters select:focus,
+.filters input:focus {
+  outline: none;
+  border-color: var(--akpsi-gold);
+}
+.alumni-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+.alumni-card {
+  background: #ffffff;
+  border-left: 6px solid var(--akpsi-blue);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.25s;
+}
+.alumni-card:hover {
+  transform: translateY(-4px);
+}
+.alumni-card h3 {
+  color: var(--akpsi-blue);
+  margin-bottom: 0.6rem;
+  font-family: var(--font-heading);
+}
+.alumni-details p strong {
+  color: var(--akpsi-blue);
+}
+.contact-info a {
+  color: var(--akpsi-gold);
+  font-weight: 600;
+}

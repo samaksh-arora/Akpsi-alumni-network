@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import './home.css'
+import '../theme.css'
+import '../styles.css'
 
 export default function Home() {
   const [data, setData] = useState(null)
@@ -61,7 +64,7 @@ export default function Home() {
           <Link to="/alumni" style={{ textDecoration: 'none' }}>
             <div className="stat-card" style={{ cursor: 'pointer', background: '#003366', color: 'white' }}>
               <h3 style={{ color: 'white', marginBottom: '0.5rem' }}>Browse Alumni</h3>
-              <p style={{ color: '#e3f2fd', margin: 0 }}>Search and filter the complete directory</p>
+              <p style={{ color: '#e3f2fd', margin: 0 }}>View Complete Alumni Directory</p>
             </div>
           </Link>
           

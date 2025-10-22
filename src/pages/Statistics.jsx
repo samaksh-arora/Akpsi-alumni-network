@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react'
+import './statistics.css'
+import '../theme.css'
+import '../styles.css'
 
 export default function Statistics() {
   const [data, setData] = useState(null)
