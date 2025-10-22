@@ -92,50 +92,50 @@ The site uses Alpha Kappa Psi's official colors:
 - Headings: Montserrat (bold, 600-800 weight)
 - Body: Open Sans (regular, 400-600 weight)
 
-Features Breakdown
-Home Page
-	•	Overview statistics (total alumni, companies, industries)
-	•	Top 10 employers list
-	•	Quick links to other sections
-Alumni Directory
-	•	5 simultaneous filters:
-	•	Name search (real-time)
-	•	Pledge class dropdown
-	•	Industry dropdown
-	•	Graduation year dropdown
-	•	Employer dropdown
-	•	Results counter
-	•	Clear filters button
-	•	Grid view of alumni cards with full contact info
-Company Directory
-	•	Alphabetical list of 147+ companies
-	•	Alumni count per company
-	•	Click to view full list of alumni at each company
-	•	Industry tags for each company
-Statistics
-	•	Network overview cards
-  Top 15 employers with bar charts
-	•	Industry distribution
-	•	Pledge class breakdown
-	•	Graduation year trends
-	•	Top alumni locations
-Tech Stack
-	•	React 18 - UI framework
-	•	React Router 6 - Navigation
-	•	Vite 5 - Build tool and dev server
-	•	CSS3 - Styling (no frameworks)
-	•	Python - Data processing script
-Maintenance
+### Features Breakdown
+## Home Page
+-Overview statistics (total alumni, companies, industries)
+-Top 10 employers list
+-Quick links to other sections
+## Alumni Directory
+# 5 simultaneous filters:
+-Name search (real-time)
+-Pledge class dropdown
+-Industry dropdown
+-Graduation year dropdown
+-Employer dropdown
+-Results counter
+-Clear filters button
+-Grid view of alumni cards with full contact info
+## Company Directory
+-Alphabetical list of 147+ companies
+-Alumni count per company
+-Click to view full list of alumni at each company
+-Industry tags for each company
+## Statistics
+-Network overview cards
+-Top 15 employers with bar charts
+Industry distribution
+Pledge class breakdown
+Graduation year trends
+Top alumni locations
+## Tech Stack
+React 18 - UI framework
+React Router 6 - Navigation
+Vite 5 - Build tool and dev server
+CSS3 - Styling (no frameworks)
+Python - Data processing script
+## Maintenance
 Regular Updates
 	•	Monthly: Update alumni data from your master spreadsheet
 	•	Quarterly: Verify contact information accuracy
 	•	Annually: Full data audit and cleanup
-Support
+## Support
 For technical issues or feature requests, contact the chapter webmaster.
-License
+## License
 Internal use only - Alpha Kappa Psi Beta Omicron Chapter, Wayne State University.
-About Alpha Kappa Psi
+## About Alpha Kappa Psi
 Alpha Kappa Psi is the oldest and largest professional business fraternity. The Beta Omicron chapter at Wayne State University was established to develop principled business leaders through professional development, community service, and lifelong brotherhood.
-Learn more: akpsi.org
+-Learn more: akpsi.org
 Last Updated: October 2025 Version: 1.0.0 Maintained by: Beta Omicron Chapter
 
